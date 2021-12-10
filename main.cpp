@@ -9,38 +9,6 @@
 
 using namespace std;
 
-void forward_selection(vector<vector<double>> const & data){
-    vector<int> features(data[0].size(), 0); // Current features tested
-    vector<int> best_features = {features.begin(), features.end()};
-    double best_accuracy = 0;
-
-    for(int i = 1; i < data[0].size(); i++){ // Loop through all features
-        int feature_to_add;
-        double best_new_accuracy = 0;
-
-        for(int j = 1; j < data[0].size(); j++){
-            if(features[j] == 0){
-                double accuracy = nearest_neighbor_accuracy(data);
-
-                if(accuracy > best_new_accuracy){
-                    best_new_accuracy = accuracy;
-                    feature_to_add = j;
-                }
-            }
-        }
-        features[feature_to_add] = 1; // Adding the selected feature;
-        
-        if(best_new_accuracy > best_accuracy){ // Setting the top accuracy
-            best_accuracy = best_new_accuracy;
-            best_features = {features.begin(), features.end()};
-        }
-    }
-}
-
-void backward_elimination(vector<vector<double>> const & data){
-    cout << "Backward" << endl;
-}
-
 double calculate_distance(vector<double> const & v1, vector<double> const & v2){ // Distance formula between v1 and v2
     double sum = 0;
     for(int i = 0; i < v1.size(), i < v2.size(); i++){
@@ -50,12 +18,31 @@ double calculate_distance(vector<double> const & v1, vector<double> const & v2){
     return sqrt(sum);
 }
 
-double nearest_neighbor_accuracy(vector<vector<double>> const & data){
+/*
+    params:
+        data
+        used features
+        new feature added or removed
+        forward(true) backward(false)
+*/
+double nearest_neighbor_accuracy(vector<vector<double>> const & data, vector<int> const & features_index, int new_feature, bool algorithm){
     int correct = 0; // Number of correct classifications
 
     for(int i = 0; i < data.size(); i++){
         double classification = data[i][0]; // Class for data at i
-        vector<double> features = {data[i].begin() + 1, data[i].end()}; // Features for data at i
+        vector<double> features; // Features for data at i
+        
+        for(int k = 1; k < features_index.size(); k++){ // Inserting only features we're testing
+            if(features_index[k] == 1){
+                if(!algorithm && k == new_feature){ // If backward eliminiation remove new_feature
+                    continue;
+                }
+                features.push_back(data[i][k]);
+            }
+        }
+        if(algorithm){ // If forward selection add new_feature
+            features.push_back(data[i][new_feature]);
+        }
 
         double nearest_dist = DBL_MAX; // Nearest distance to data at i
         int nearest_loc; // Location of the nearest data instance
@@ -64,7 +51,21 @@ double nearest_neighbor_accuracy(vector<vector<double>> const & data){
         for(int j = 0; j < data.size(); j++){
             if(j != i){ // Checking every other data instance besides itself
                 double j_classification = data[j][0]; // Class for data at j
-                vector<double> j_features = {data[j].begin() + 1, data[j].end()}; // Features for data at j
+                vector<double> j_features; // Features for data at j
+                
+                
+                for(int k = 1; k < features_index.size(); k++){ // Inserting only features we're testing
+                    if(features_index[k] == 1){
+                        if(!algorithm && k == new_feature){ // If backward elimination remove new_feature
+                            continue;
+                        }
+                        j_features.push_back(data[j][k]);
+                    }
+                }
+                if(algorithm){ // If forward selection add new_feature
+                    j_features.push_back(data[j][new_feature]);
+                }
+
                 double distance = calculate_distance(features, j_features); // Calculating distance between i and j
 
                 if(distance < nearest_dist){ // If the new distance is the closest then replace
@@ -81,6 +82,78 @@ double nearest_neighbor_accuracy(vector<vector<double>> const & data){
     }
 
     return (double)correct / data.size();
+}
+
+void forward_selection(vector<vector<double>> const & data){
+    vector<int> features(data[0].size(), 0); // Current features tested
+
+    vector<int> best_features(data[0].size(), 0); // Best features
+    double best_accuracy = 0; // Accuracy of best features
+
+    for(int i = 1; i < data[0].size(); i++){ // Loop through all features
+        int feature_to_add;
+        double best_new_accuracy = 0;
+
+        for(int j = 1; j < data[0].size(); j++){
+            if(features[j] == 0){
+                double accuracy = nearest_neighbor_accuracy(data, features, j, true);
+
+                if(accuracy > best_new_accuracy){
+                    best_new_accuracy = accuracy;
+                    feature_to_add = j;
+                }
+            }
+        }
+        features[feature_to_add] = 1; // Adding the selected feature;
+        
+        if(best_new_accuracy > best_accuracy){ // Setting the top accuracy
+            best_accuracy = best_new_accuracy;
+            best_features = {features.begin(), features.end()};
+        }
+    }
+
+    for(int i = 1; i < best_features.size(); i++){
+        if(best_features[i] == 1){
+            cout << i << " ";
+        }
+    }
+    cout << "were the best features with an accuracy of " << best_accuracy << "." << endl;
+}
+
+void backward_elimination(vector<vector<double>> const & data){
+    vector<int> features(data[0].size(), 1); // Current features tested
+
+    vector<int> best_features(data[0].size(), 1); // Best features
+    double best_accuracy = 0; // Accuracy of best features
+
+    for(int i = 1; i < data[0].size(); i++){ // Loop through all features
+        int feature_to_remove;
+        double best_new_accuracy = 0;
+
+        for(int j = 1; j < data[0].size(); j++){
+            if(features[j] == 1){
+                double accuracy = nearest_neighbor_accuracy(data, features, j, false);
+
+                if(accuracy > best_new_accuracy){
+                    best_new_accuracy = accuracy;
+                    feature_to_remove = j;
+                }
+            }
+        }
+        features[feature_to_remove] = 0; // Adding the selected feature;
+        
+        if(best_new_accuracy > best_accuracy){ // Setting the top accuracy
+            best_accuracy = best_new_accuracy;
+            best_features = {features.begin(), features.end()};
+        }
+    }
+
+    for(int i = 1; i < best_features.size(); i++){
+        if(best_features[i] == 1){
+            cout << i << " ";
+        }
+    }
+    cout << "were the best features with an accuracy of " << best_accuracy << "." << endl;
 }
 
 void reading_data(string name, vector<vector<double>>& data){
@@ -143,7 +216,7 @@ void select_algorithm(vector<vector<double>> const & smallData, vector<vector<do
             backward_elimination(largeData);
             break;
         default:
-            cout << "Error: Data or Algorithm doe not exist." << endl;
+            cout << "Error: Data or Algorithm does not exist." << endl;
             break;
     }
 }
@@ -152,7 +225,7 @@ int main(){
     vector<vector<double>> smallData;
     vector<vector<double>> largeData;
 
-    reading_data("Small_data.txt", smallData);
+    reading_data("Small_data61.txt", smallData);
     reading_data("Large_data.txt", largeData);
 
     select_algorithm(smallData, largeData);
