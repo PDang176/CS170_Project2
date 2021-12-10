@@ -140,7 +140,7 @@ void forward_selection(vector<vector<double>> const & data){
     auto stop = high_resolution_clock::now();
 
     auto duration = duration_cast<seconds>(stop - start);
-    myfile << "Time taken: " << duration.count() << " microseconds" << endl;
+    myfile << "Time taken: " << duration.count() << " seconds" << endl;
 }
 
 void backward_elimination(vector<vector<double>> const & data){
@@ -192,7 +192,7 @@ void backward_elimination(vector<vector<double>> const & data){
     auto stop = high_resolution_clock::now();
 
     auto duration = duration_cast<seconds>(stop - start);
-    myfile << "Time taken: " << duration.count() << " microseconds" << endl;
+    myfile << "Time taken: " << duration.count() << " seconds" << endl;
 }
 
 void reading_data(string name, vector<vector<double>>& data){

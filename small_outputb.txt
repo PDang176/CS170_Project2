@@ -1,0 +1,69 @@
+Small Data or Large Data (Type 1 or 2 respectively): 1
+Forward Selection or Backward Elimination (Type 1 or 2 respectively): 2
+Feature(s) { 0 2 3 4 5 6 7 8 9 10 } has an accuracy of 0.768
+Feature(s) { 0 1 3 4 5 6 7 8 9 10 } has an accuracy of 0.738
+Feature(s) { 0 1 2 4 5 6 7 8 9 10 } has an accuracy of 0.724
+Feature(s) { 0 1 2 3 5 6 7 8 9 10 } has an accuracy of 0.77
+Feature(s) { 0 1 2 3 4 6 7 8 9 10 } has an accuracy of 0.762
+Feature(s) { 0 1 2 3 4 5 7 8 9 10 } has an accuracy of 0.732
+Feature(s) { 0 1 2 3 4 5 6 8 9 10 } has an accuracy of 0.788
+Feature(s) { 0 1 2 3 4 5 6 7 9 10 } has an accuracy of 0.754
+Feature(s) { 0 1 2 3 4 5 6 7 8 10 } has an accuracy of 0.778
+Feature(s) { 0 1 2 3 4 5 6 7 8 9 } has an accuracy of 0.758
+Feature 7 was the best to remove with an accuracy of 0.788
+Feature(s) { 0 2 3 4 5 6 8 9 10 } has an accuracy of 0.802
+Feature(s) { 0 1 3 4 5 6 8 9 10 } has an accuracy of 0.8
+Feature(s) { 0 1 2 4 5 6 8 9 10 } has an accuracy of 0.746
+Feature(s) { 0 1 2 3 5 6 8 9 10 } has an accuracy of 0.794
+Feature(s) { 0 1 2 3 4 6 8 9 10 } has an accuracy of 0.79
+Feature(s) { 0 1 2 3 4 5 8 9 10 } has an accuracy of 0.758
+Feature(s) { 0 1 2 3 4 5 6 9 10 } has an accuracy of 0.776
+Feature(s) { 0 1 2 3 4 5 6 8 10 } has an accuracy of 0.836
+Feature(s) { 0 1 2 3 4 5 6 8 9 } has an accuracy of 0.798
+Feature 9 was the best to remove with an accuracy of 0.836
+Feature(s) { 0 2 3 4 5 6 8 10 } has an accuracy of 0.834
+Feature(s) { 0 1 3 4 5 6 8 10 } has an accuracy of 0.818
+Feature(s) { 0 1 2 4 5 6 8 10 } has an accuracy of 0.77
+Feature(s) { 0 1 2 3 5 6 8 10 } has an accuracy of 0.84
+Feature(s) { 0 1 2 3 4 6 8 10 } has an accuracy of 0.806
+Feature(s) { 0 1 2 3 4 5 8 10 } has an accuracy of 0.792
+Feature(s) { 0 1 2 3 4 5 6 10 } has an accuracy of 0.83
+Feature(s) { 0 1 2 3 4 5 6 8 } has an accuracy of 0.83
+Feature 4 was the best to remove with an accuracy of 0.84
+Feature(s) { 0 2 3 5 6 8 10 } has an accuracy of 0.856
+Feature(s) { 0 1 3 5 6 8 10 } has an accuracy of 0.846
+Feature(s) { 0 1 2 5 6 8 10 } has an accuracy of 0.766
+Feature(s) { 0 1 2 3 6 8 10 } has an accuracy of 0.834
+Feature(s) { 0 1 2 3 5 8 10 } has an accuracy of 0.788
+Feature(s) { 0 1 2 3 5 6 10 } has an accuracy of 0.826
+Feature(s) { 0 1 2 3 5 6 8 } has an accuracy of 0.858
+Feature 10 was the best to remove with an accuracy of 0.858
+Feature(s) { 0 2 3 5 6 8 } has an accuracy of 0.882
+Feature(s) { 0 1 3 5 6 8 } has an accuracy of 0.878
+Feature(s) { 0 1 2 5 6 8 } has an accuracy of 0.786
+Feature(s) { 0 1 2 3 6 8 } has an accuracy of 0.848
+Feature(s) { 0 1 2 3 5 8 } has an accuracy of 0.794
+Feature(s) { 0 1 2 3 5 6 } has an accuracy of 0.842
+Feature 1 was the best to remove with an accuracy of 0.882
+Feature(s) { 0 3 5 6 8 } has an accuracy of 0.902
+Feature(s) { 0 2 5 6 8 } has an accuracy of 0.788
+Feature(s) { 0 2 3 6 8 } has an accuracy of 0.872
+Feature(s) { 0 2 3 5 8 } has an accuracy of 0.782
+Feature(s) { 0 2 3 5 6 } has an accuracy of 0.882
+Feature 2 was the best to remove with an accuracy of 0.902
+Feature(s) { 0 5 6 8 } has an accuracy of 0.766
+Feature(s) { 0 3 6 8 } has an accuracy of 0.946
+Feature(s) { 0 3 5 8 } has an accuracy of 0.824
+Feature(s) { 0 3 5 6 } has an accuracy of 0.938
+Feature 5 was the best to remove with an accuracy of 0.946
+Feature(s) { 0 6 8 } has an accuracy of 0.778
+Feature(s) { 0 3 8 } has an accuracy of 0.832
+Feature(s) { 0 3 6 } has an accuracy of 0.966
+Feature 8 was the best to remove with an accuracy of 0.966
+Feature(s) { 0 6 } has an accuracy of 0.774
+Feature(s) { 0 3 } has an accuracy of 0.85
+Feature 6 was the best to remove with an accuracy of 0.85
+Feature(s) { 0 } has an accuracy of 0.852
+Feature 3 was the best to remove with an accuracy of 0.852
+3 6 were the best features with an accuracy of 0.966.
+Time taken: 21 seconds

@@ -66,4 +66,4 @@ Feature 8 was the best to add with an accuracy of 0.78
 Feature(s) { 1 2 3 4 5 7 8 9 10 6 } has an accuracy of 0.754
 Feature 6 was the best to add with an accuracy of 0.754
 Feature(s) { 7 9 } were the best features with an accuracy of 0.948.
-Time taken: 15 microseconds
+Time taken: 15 seconds
