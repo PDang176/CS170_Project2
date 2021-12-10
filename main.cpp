@@ -42,10 +42,12 @@ double nearest_neighbor_accuracy(vector<vector<double>> const & data){
             }
         }
 
-        
+        if(classification == nearest_class){ // If the nearest neighbor's class matches i then it's correct
+            correct++;
+        }
     }
 
-    return (double)(correct / data.size());
+    return (double)correct / data.size();
 }
 
 void reading_data(string name, vector<vector<double>>& data){
@@ -78,6 +80,8 @@ int main(){
     reading_data("Small_data.txt", smallData);
 
     double temp = nearest_neighbor_accuracy(smallData);
+
+    cout << temp << endl;
 
     return 0;
 }
