@@ -1,0 +1,69 @@
+Small Data or Large Data (Type 1 or 2 respectively): 1
+Forward Selection or Backward Elimination (Type 1 or 2 respectively): 1
+Feature(s) { 1 } has an accuracy of 0.704
+Feature(s) { 2 } has an accuracy of 0.728
+Feature(s) { 3 } has an accuracy of 0.708
+Feature(s) { 4 } has an accuracy of 0.708
+Feature(s) { 5 } has an accuracy of 0.746
+Feature(s) { 6 } has an accuracy of 0.764
+Feature(s) { 7 } has an accuracy of 0.822
+Feature(s) { 8 } has an accuracy of 0.738
+Feature(s) { 9 } has an accuracy of 0.78
+Feature(s) { 10 } has an accuracy of 0.714
+Feature 7 was the best to add with an accuracy of 0.822
+Feature(s) { 7 1 } has an accuracy of 0.86
+Feature(s) { 7 2 } has an accuracy of 0.84
+Feature(s) { 7 3 } has an accuracy of 0.816
+Feature(s) { 7 4 } has an accuracy of 0.824
+Feature(s) { 7 5 } has an accuracy of 0.86
+Feature(s) { 7 6 } has an accuracy of 0.838
+Feature(s) { 7 8 } has an accuracy of 0.812
+Feature(s) { 7 9 } has an accuracy of 0.948
+Feature(s) { 7 10 } has an accuracy of 0.8
+Feature 9 was the best to add with an accuracy of 0.948
+Feature(s) { 7 9 1 } has an accuracy of 0.914
+Feature(s) { 7 9 2 } has an accuracy of 0.908
+Feature(s) { 7 9 3 } has an accuracy of 0.904
+Feature(s) { 7 9 4 } has an accuracy of 0.94
+Feature(s) { 7 9 5 } has an accuracy of 0.926
+Feature(s) { 7 9 6 } has an accuracy of 0.94
+Feature(s) { 7 9 8 } has an accuracy of 0.906
+Feature(s) { 7 9 10 } has an accuracy of 0.918
+Feature 4 was the best to add with an accuracy of 0.94
+Feature(s) { 4 7 9 1 } has an accuracy of 0.894
+Feature(s) { 4 7 9 2 } has an accuracy of 0.866
+Feature(s) { 4 7 9 3 } has an accuracy of 0.868
+Feature(s) { 4 7 9 5 } has an accuracy of 0.894
+Feature(s) { 4 7 9 6 } has an accuracy of 0.864
+Feature(s) { 4 7 9 8 } has an accuracy of 0.878
+Feature(s) { 4 7 9 10 } has an accuracy of 0.88
+Feature 1 was the best to add with an accuracy of 0.894
+Feature(s) { 1 4 7 9 2 } has an accuracy of 0.85
+Feature(s) { 1 4 7 9 3 } has an accuracy of 0.85
+Feature(s) { 1 4 7 9 5 } has an accuracy of 0.862
+Feature(s) { 1 4 7 9 6 } has an accuracy of 0.84
+Feature(s) { 1 4 7 9 8 } has an accuracy of 0.836
+Feature(s) { 1 4 7 9 10 } has an accuracy of 0.838
+Feature 5 was the best to add with an accuracy of 0.862
+Feature(s) { 1 4 5 7 9 2 } has an accuracy of 0.796
+Feature(s) { 1 4 5 7 9 3 } has an accuracy of 0.822
+Feature(s) { 1 4 5 7 9 6 } has an accuracy of 0.822
+Feature(s) { 1 4 5 7 9 8 } has an accuracy of 0.818
+Feature(s) { 1 4 5 7 9 10 } has an accuracy of 0.792
+Feature 3 was the best to add with an accuracy of 0.822
+Feature(s) { 1 3 4 5 7 9 2 } has an accuracy of 0.804
+Feature(s) { 1 3 4 5 7 9 6 } has an accuracy of 0.796
+Feature(s) { 1 3 4 5 7 9 8 } has an accuracy of 0.768
+Feature(s) { 1 3 4 5 7 9 10 } has an accuracy of 0.798
+Feature 2 was the best to add with an accuracy of 0.804
+Feature(s) { 1 2 3 4 5 7 9 6 } has an accuracy of 0.776
+Feature(s) { 1 2 3 4 5 7 9 8 } has an accuracy of 0.768
+Feature(s) { 1 2 3 4 5 7 9 10 } has an accuracy of 0.782
+Feature 10 was the best to add with an accuracy of 0.782
+Feature(s) { 1 2 3 4 5 7 9 10 6 } has an accuracy of 0.762
+Feature(s) { 1 2 3 4 5 7 9 10 8 } has an accuracy of 0.78
+Feature 8 was the best to add with an accuracy of 0.78
+Feature(s) { 1 2 3 4 5 7 8 9 10 6 } has an accuracy of 0.754
+Feature 6 was the best to add with an accuracy of 0.754
+Feature(s) { 7 9 } were the best features with an accuracy of 0.948.
+Time taken: 15 microseconds

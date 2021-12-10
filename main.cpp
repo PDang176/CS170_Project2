@@ -6,8 +6,13 @@
 #include <cmath>
 #include <cfloat>
 #include <unordered_set>
+#include <fstream>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
+
+ofstream myfile;
 
 double calculate_distance(vector<double> const & v1, vector<double> const & v2){ // Distance formula between v1 and v2
     double sum = 0;
@@ -85,6 +90,8 @@ double nearest_neighbor_accuracy(vector<vector<double>> const & data, vector<int
 }
 
 void forward_selection(vector<vector<double>> const & data){
+    auto start = high_resolution_clock::now();
+
     vector<int> features(data[0].size(), 0); // Current features tested
 
     vector<int> best_features(data[0].size(), 0); // Best features
@@ -98,6 +105,14 @@ void forward_selection(vector<vector<double>> const & data){
             if(features[j] == 0){
                 double accuracy = nearest_neighbor_accuracy(data, features, j, true);
 
+                myfile << "Feature(s) { ";
+                for(int k = 0; k < features.size(); k++){
+                    if(features[k] == 1){
+                        myfile << k << " ";
+                    }
+                }
+                myfile << j << " } has an accuracy of " << accuracy << endl; 
+
                 if(accuracy > best_new_accuracy){
                     best_new_accuracy = accuracy;
                     feature_to_add = j;
@@ -106,21 +121,30 @@ void forward_selection(vector<vector<double>> const & data){
         }
         features[feature_to_add] = 1; // Adding the selected feature;
         
+        myfile << "Feature " << feature_to_add << " was the best to add with an accuracy of " << best_new_accuracy << endl;
+
         if(best_new_accuracy > best_accuracy){ // Setting the top accuracy
             best_accuracy = best_new_accuracy;
             best_features = {features.begin(), features.end()};
         }
     }
 
+    myfile << "Feature(s) { ";
     for(int i = 1; i < best_features.size(); i++){
         if(best_features[i] == 1){
-            cout << i << " ";
+            myfile << i << " ";
         }
     }
-    cout << "were the best features with an accuracy of " << best_accuracy << "." << endl;
+    myfile << "} were the best features with an accuracy of " << best_accuracy << "." << endl;
+
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<seconds>(stop - start);
+    myfile << "Time taken: " << duration.count() << " microseconds" << endl;
 }
 
 void backward_elimination(vector<vector<double>> const & data){
+    auto start = high_resolution_clock::now();
     vector<int> features(data[0].size(), 1); // Current features tested
 
     vector<int> best_features(data[0].size(), 1); // Best features
@@ -134,6 +158,14 @@ void backward_elimination(vector<vector<double>> const & data){
             if(features[j] == 1){
                 double accuracy = nearest_neighbor_accuracy(data, features, j, false);
 
+                myfile << "Feature(s) { ";
+                for(int k = 0; k < features.size(); k++){
+                    if(features[k] == 1 && k != j){
+                        myfile << k << " ";
+                    }
+                }
+                myfile << "} has an accuracy of " << accuracy << endl; 
+
                 if(accuracy > best_new_accuracy){
                     best_new_accuracy = accuracy;
                     feature_to_remove = j;
@@ -141,6 +173,8 @@ void backward_elimination(vector<vector<double>> const & data){
             }
         }
         features[feature_to_remove] = 0; // Adding the selected feature;
+
+        myfile << "Feature " << feature_to_remove << " was the best to remove with an accuracy of " << best_new_accuracy << endl;
         
         if(best_new_accuracy > best_accuracy){ // Setting the top accuracy
             best_accuracy = best_new_accuracy;
@@ -150,10 +184,15 @@ void backward_elimination(vector<vector<double>> const & data){
 
     for(int i = 1; i < best_features.size(); i++){
         if(best_features[i] == 1){
-            cout << i << " ";
+            myfile << i << " ";
         }
     }
-    cout << "were the best features with an accuracy of " << best_accuracy << "." << endl;
+    myfile << "were the best features with an accuracy of " << best_accuracy << "." << endl;
+
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<seconds>(stop - start);
+    myfile << "Time taken: " << duration.count() << " microseconds" << endl;
 }
 
 void reading_data(string name, vector<vector<double>>& data){
@@ -174,17 +213,21 @@ void reading_data(string name, vector<vector<double>>& data){
         }
     }
     else{
-        cout << "Error opening file" << endl;
+        myfile << "Error opening file" << endl;
     }
 }
 
 int select_data(){
     int data;
     cout << "Small Data or Large Data (Type 1 or 2 respectively): ";
+    myfile << "Small Data or Large Data (Type 1 or 2 respectively): ";
     cin >> data;
+    myfile << data << endl;
     while(data != 1 && data != 2){
         cout << "Invalid input. Small Data or Large Data (Type 1 or 2 respectively): ";
+        myfile << "Invalid input. Small Data or Large Data (Type 1 or 2 respectively): ";
         cin >> data;
+        myfile << data << endl;
     }
 
     return data;
@@ -194,10 +237,14 @@ void select_algorithm(vector<vector<double>> const & smallData, vector<vector<do
     int data = select_data();
     int algorithm;
     cout << "Forward Selection or Backward Elimination (Type 1 or 2 respectively): ";
+    myfile << "Forward Selection or Backward Elimination (Type 1 or 2 respectively): ";
     cin >> algorithm;
+    myfile << algorithm << endl;
     while(algorithm != 1 && algorithm != 2){
         cout << "Invalid input. Forward Selection or Backward Elimination (Type 1 or 2 respectively): ";
+        myfile << "Invalid input. Forward Selection or Backward Elimination (Type 1 or 2 respectively): ";
         cin >> algorithm;
+        myfile << algorithm << endl;
     }
 
     int combined = data * 10 + algorithm;
@@ -216,16 +263,18 @@ void select_algorithm(vector<vector<double>> const & smallData, vector<vector<do
             backward_elimination(largeData);
             break;
         default:
-            cout << "Error: Data or Algorithm does not exist." << endl;
+            myfile << "Error: Data or Algorithm does not exist." << endl;
             break;
     }
 }
 
 int main(){
+    myfile.open("output.txt");
+
     vector<vector<double>> smallData;
     vector<vector<double>> largeData;
 
-    reading_data("Small_data61.txt", smallData);
+    reading_data("Small_data.txt", smallData);
     reading_data("Large_data.txt", largeData);
 
     select_algorithm(smallData, largeData);
