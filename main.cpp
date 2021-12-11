@@ -106,7 +106,7 @@ void forward_selection(vector<vector<double>> const & data){
                 double accuracy = nearest_neighbor_accuracy(data, features, j, true);
 
                 myfile << "Feature(s) { ";
-                for(int k = 0; k < features.size(); k++){
+                for(int k = 1; k < features.size(); k++){
                     if(features[k] == 1){
                         myfile << k << " ";
                     }
@@ -159,7 +159,7 @@ void backward_elimination(vector<vector<double>> const & data){
                 double accuracy = nearest_neighbor_accuracy(data, features, j, false);
 
                 myfile << "Feature(s) { ";
-                for(int k = 0; k < features.size(); k++){
+                for(int k = 1; k < features.size(); k++){
                     if(features[k] == 1 && k != j){
                         myfile << k << " ";
                     }
