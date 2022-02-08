@@ -1,0 +1,2 @@
+Small Data or Large Data (Type 1 or 2 respectively): 1
+Forward Selection or Backward Elimination (Type 1 or 2 respectively): 2
